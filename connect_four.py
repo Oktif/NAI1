@@ -1,69 +1,97 @@
 import numpy as np
+import pandas as pd
 from easyAI import TwoPlayerGame, Human_Player, AI_Player, Negamax
 
-class GameController(TwoPlayerGame):
-    def __init__(self, players, board = None):
-#Tworzenie graczy
+
+class connectFour(TwoPlayerGame):
+
+    def __init__(self, players=None):
         self.players = players
-#Tworzenie planszy z i kolumnami i j wierszami
-        self.board = board if (board != None) else (
-            np.array([[0 for i in range (7)] for j in range(6)]))
-#Ustawienie kto zacznie grę
-        self.nplayer = 1
-#Tworzenie pozycji planszy
+        self.width = 7
+        self.height = 6
+        self.board = [['.' for i in range(self.width)] for j in range(self.height)]
+        self.current_player = 1
+        self.marks = {1: 'X', 2: '0'}
         self.pos_dir = np.array([[[i, 0], [0, 1]] for i in range(6)] +
                                 [[[0, i], [1, 0]] for i in range(7)] +
                                 [[[i, 0], [1, 1]] for i in range(1, 3)] +
                                 [[[0, i], [1, 1]] for i in range(4)] +
                                 [[[i, 6], [1, -1]] for i in range(1, 3)] +
                                 [[[0, i], [1, -1]] for i in range(3, 7)])
-#Definiowanie możliwych ruchów
+
     def possible_moves(self):
-        return [i for i in range(7) if (self.board[:, i].min() == 0)]
-#Kontrolowanie ruchów
-    def make_move(self, column):
-        line = np.argmin(self.board[:, column] != 0)
-        self.board[line, column] = self.nplayer
-#Wyświetlanie planszy
+        return [i for i in range(7) if self.board[0][i] == '.']
+
+    def make_move(self, move):
+        self.applyMove(move)
+
+    def unmake_move(self, move):
+        self.revertMove(move)
+
+    def win(self):
+        return self.isWon()
+
+    def is_over(self):
+        return self.win()  # Game stops when someone wins.
+
     def show(self):
-        print('\n' + '\n'.join(
-            ['0 1 2 3 4 5 6', 13 * '-'] +
-            [' '.join([['.','O','X'][self.board[5 - j][i]]
-            for i in range(7)]) for j in range(6)]))
-#Sprawdzanie przegranej
+        print(pd.DataFrame(self.board))
+
+    def scoring(self):
+        return 100 if game.win() else 0  # For the AI
+
+    def applyMove(self, move):
+        col = int(move)
+        for row in self.board[::-1]:
+            if row[col] == '.':
+                row[col] = self.marks.get(self.current_player)
+                break
+
+    def revertMove(self, move):
+        col = int(move)
+        for row in self.board:
+            if row[col] != '.':
+                row[col] = '.'
+                break
+
     def loss_condition(self):
         for pos, direction in self.pos_dir:
             streak = 0
-            while (0 <= pos[0] <= 5) and (0 <= pos[1] <=6):
-                if self.board[pos[0], pos[1]] == self.nopponent:
+            while (0 <= pos[0] <= 5) and (0 <= pos[1] <= 6):
+                if self.board[pos[0]][pos[1]] == self.marks.get(2):
                     streak += 1
                     if streak == 4:
                         return True
 
                 else:
                     streak = 0
-
                 pos = pos + direction
-
         return False
-#Sprawdzanie czy gra skonczona
-    def is_over(self):
-        return (self.board.min() > 0) or self.loss_condition()
-#Obliczanie punktacji
+
+    def isWon(self):
+        for pos, direction in self.pos_dir:
+            streak = 0
+            while (0 <= pos[0] <= 5) and (0 <= pos[1] <= 6):
+                if self.board[pos[0]][pos[1]] == self.marks.get(1):
+                    streak += 1
+                    if streak == 4:
+                        return True
+
+                else:
+                    streak = 0
+                pos = pos + direction
+        return False
+
+    # Obliczanie punktacji
     def scoring(self):
         return -100 if self.loss_condition() else 0
-#Funkcja gry
+
+
+# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-#Algorytmy
-    algo_neg = Negamax(5)
-    algo_neg_2 = Negamax(14)
-#Rozpoczęcie gry
-    game = GameController([AI_Player(algo_neg), AI_Player(algo_neg_2)])
-    game.play()
-#Wyświetlanie wyniku
-    if game.loss_condition():
-        print('\nPlayer',game.nopponent,'wins')
-    else:
-        print('\nIts a draw.')
-
-
+    print('starting in main')
+    # Start a match (and store the history of moves when it ends)
+    ai1 = Negamax(9)
+    game = connectFour([Human_Player(), AI_Player(ai1)])
+    # game = connectFour([Human_Player(), AI_Player(ai)])
+    history = game.play()
