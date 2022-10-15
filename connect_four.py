@@ -2,7 +2,6 @@ import numpy as np
 import pandas as pd
 from easyAI import TwoPlayerGame, Human_Player, AI_Player, Negamax
 
-
 class connectFour(TwoPlayerGame):
 
     def __init__(self, players=None):
@@ -28,9 +27,6 @@ class connectFour(TwoPlayerGame):
     def unmake_move(self, move):
         self.revertMove(move)
 
-    def win(self):
-        return self.isWon()
-
     def is_over(self):
         return self.win()  # Game stops when someone wins.
 
@@ -38,7 +34,7 @@ class connectFour(TwoPlayerGame):
         print(pd.DataFrame(self.board))
 
     def scoring(self):
-        return 100 if game.win() else 0  # For the AI
+        return 100 if self.win() else 0
 
     def applyMove(self, move):
         col = int(move)
@@ -46,7 +42,6 @@ class connectFour(TwoPlayerGame):
             if row[col] == '.':
                 row[col] = self.marks.get(self.current_player)
                 break
-
     def revertMove(self, move):
         col = int(move)
         for row in self.board:
@@ -54,44 +49,34 @@ class connectFour(TwoPlayerGame):
                 row[col] = '.'
                 break
 
-    def loss_condition(self):
+    def lose(self):
         for pos, direction in self.pos_dir:
             streak = 0
             while (0 <= pos[0] <= 5) and (0 <= pos[1] <= 6):
-                if self.board[pos[0]][pos[1]] == self.marks.get(2):
+                if self.board[pos[0]][pos[1]] == self.marks.get(self.opponent_index):
                     streak += 1
                     if streak == 4:
                         return True
-
                 else:
                     streak = 0
                 pos = pos + direction
         return False
 
-    def isWon(self):
+    def win(self):
         for pos, direction in self.pos_dir:
             streak = 0
             while (0 <= pos[0] <= 5) and (0 <= pos[1] <= 6):
-                if self.board[pos[0]][pos[1]] == self.marks.get(1):
+                if self.board[pos[0]][pos[1]] == self.marks.get(self.current_player):
                     streak += 1
                     if streak == 4:
                         return True
-
                 else:
                     streak = 0
                 pos = pos + direction
         return False
-
-    # Obliczanie punktacji
-    def scoring(self):
-        return -100 if self.loss_condition() else 0
-
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print('starting in main')
-    # Start a match (and store the history of moves when it ends)
-    ai1 = Negamax(9)
-    game = connectFour([Human_Player(), AI_Player(ai1)])
-    # game = connectFour([Human_Player(), AI_Player(ai)])
-    history = game.play()
+    ai_algo = Negamax(8)
+    game = connectFour([Human_Player(), AI_Player(ai_algo)])
+    game.play()
