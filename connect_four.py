@@ -28,13 +28,17 @@ class connectFour(TwoPlayerGame):
         self.revertMove(move)
 
     def is_over(self):
-        return self.win()  # Game stops when someone wins.
+        return self.win() or self.lose()  # Game stops when someone wins.
 
     def show(self):
         print(pd.DataFrame(self.board))
 
     def scoring(self):
-        return 100 if self.win() else 0
+        if self.win():
+            return 100
+        elif self.lose():
+            return -100
+        return 0
 
     def applyMove(self, move):
         col = int(move)
@@ -77,6 +81,6 @@ class connectFour(TwoPlayerGame):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    ai_algo = Negamax(8)
+    ai_algo = Negamax(9)
     game = connectFour([Human_Player(), AI_Player(ai_algo)])
     game.play()
