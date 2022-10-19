@@ -31,7 +31,7 @@ class connectFour(TwoPlayerGame):
         self.revertMove(move)
 
     def is_over(self):
-        return self.win()  # Game stops when someone wins.
+        return self.win() or self.lose()  # Game stops when someone wins.
 
     def show(self):
         print(pd.DataFrame(self.board))
