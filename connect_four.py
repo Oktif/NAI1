@@ -2,6 +2,9 @@ import numpy as np
 import pandas as pd
 from easyAI import TwoPlayerGame, Human_Player, AI_Player, Negamax
 
+
+
+
 class connectFour(TwoPlayerGame):
 
     def __init__(self, players=None):
@@ -28,17 +31,13 @@ class connectFour(TwoPlayerGame):
         self.revertMove(move)
 
     def is_over(self):
-        return self.win() or self.lose()  # Game stops when someone wins.
+        return self.win()  # Game stops when someone wins.
 
     def show(self):
         print(pd.DataFrame(self.board))
 
     def scoring(self):
-        if self.win():
-            return 100
-        elif self.lose():
-            return -100
-        return 0
+        return 100 if self.win() else 0
 
     def applyMove(self, move):
         col = int(move)
@@ -53,34 +52,31 @@ class connectFour(TwoPlayerGame):
                 row[col] = '.'
                 break
 
-    def lose(self):
-        for pos, direction in self.pos_dir:
-            streak = 0
-            while (0 <= pos[0] <= 5) and (0 <= pos[1] <= 6):
-                if self.board[pos[0]][pos[1]] == self.marks.get(self.opponent_index):
-                    streak += 1
-                    if streak == 4:
+    def isWin(self, player):
+        for (pos, dir) in self.pos_dir:
+            in_a_row_count = 0
+            x = pos[1]
+            y = pos[0]
+            while x in range(0, self.width) and y in range(0, self.height):
+                if self.marks.get(player) == self.board[y][x]:
+                    in_a_row_count += 1
+                    if in_a_row_count >= 4:
                         return True
                 else:
-                    streak = 0
-                pos = pos + direction
+                    in_a_row_count = 0
+                x += dir[1]
+                y += dir[0]
         return False
 
     def win(self):
-        for pos, direction in self.pos_dir:
-            streak = 0
-            while (0 <= pos[0] <= 5) and (0 <= pos[1] <= 6):
-                if self.board[pos[0]][pos[1]] == self.marks.get(self.current_player):
-                    streak += 1
-                    if streak == 4:
-                        return True
-                else:
-                    streak = 0
-                pos = pos + direction
-        return False
+        return self.isWin(self.current_player)
+
+    def lose(self):
+        # przegrywasz kiedy oponent wygrywa
+        return self.isWin(self.opponent_index)
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    ai_algo = Negamax(9)
+    ai_algo = Negamax(6)
     game = connectFour([Human_Player(), AI_Player(ai_algo)])
     game.play()
