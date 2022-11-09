@@ -65,12 +65,6 @@ def in_list(list1,list2):
 def in_list2(list1,list2):
     for i in list1:
         if i not in list2:
-            List8.append(i)
-    return True
-
-def in_list2(list1,list2):
-    for i in list1:
-        if i not in list2:
             List7.append(i)
     return True
 in_list2(List5,List3)
@@ -80,4 +74,4 @@ in_list(List6,List4)
 #print(result)
 
 print('You should watch:', List7[:5])
-print('You shouldn\'t watch:', List8[:5:-1])
+print('You shouldn\'t watch:', List8[:4:-1])
