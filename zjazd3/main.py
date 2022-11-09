@@ -47,10 +47,37 @@ List4 = list(user.getMinRated(10))
 List5 = list(user3.getTopRated(10))
 List6 = list(user3.getMinRated(10))
 List7 = list()
-for List5, List3 in zip (List5,List3):
-    List7.append((List5,List3))
+#for List5, List3 in zip(List5, List3):
+#    List7.append((List5, List3))
 List8 = list()
-for List6, List4 in zip (List6,List4):
-    List8.append((List6,List4))
-print('You should watch:', List7[:3])
-print('You shouldn\'t watch:', List8[:3])
+#for List6, List4 in zip(List6, List4):
+#    List8.append((List6, List4))
+
+#print(List6)
+#print(List4)
+
+def in_list(list1,list2):
+    for i in list1:
+        if i not in list2:
+            List8.append(i)
+    return True
+
+def in_list2(list1,list2):
+    for i in list1:
+        if i not in list2:
+            List8.append(i)
+    return True
+
+def in_list2(list1,list2):
+    for i in list1:
+        if i not in list2:
+            List7.append(i)
+    return True
+in_list2(List5,List3)
+in_list(List6,List4)
+
+#result = list(set(List6).difference(List4))
+#print(result)
+
+print('You should watch:', List7[:5])
+print('You shouldn\'t watch:', List8[:5:-1])
