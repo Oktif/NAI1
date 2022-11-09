@@ -1,7 +1,9 @@
 from userRating import userRating
-
+'''
+Function to parse data from .csv file
+'''
 def parse():
-    file = open('dane.csv', 'r')
+    file = open('dane.csv', 'r', encoding="utf8")
     lines = file.read().split('\n')
     userRatings = []
     for line in lines:
