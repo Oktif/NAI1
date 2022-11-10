@@ -22,28 +22,28 @@ comparingList = user.ratings
 s = 0
 for i in range(len(userRatings)):
     if i != u:
-        user2 = userRatings[i]
-        comparedList = user2.ratings
+        user_temp = userRatings[i]
+        comparedList = user_temp.ratings
         x = comparingList
         y = comparedList
         shared_items = {k: x[k] for k in x if k in y and x[k] == y[k]}
         if (len(shared_items)) >= s:
             s = i
-            user3 = userRatings[s]
+            user2 = userRatings[s]
 
 '''
 After calculations user's soulmate will be found and movies will be reccomended for our dear user
 ps. In case of Mr.Czapiewski "Listy do M" are used as an option because there is typo in the name of the movie
 '''
-print('Congrats', user.name, 'your soulmate is', user3.name)
-print('Your average score is',user.getAverageScore(), 'your\'s soulmate\'s is', user3.getAverageScore(), 'quite a picky bunch, aren\'t ya?')
+print('Congrats', user.name, 'your soulmate is', user2.name)
+print('Your average score is',user.getAverageScore(), 'your\'s soulmate\'s is', user2.getAverageScore(), 'quite a picky bunch, aren\'t ya?')
 List1 = user.ratings
-List2 = user3.ratings
+List2 = user2.ratings
 print('You both watched', set(List1).intersection(List2))
 List3 = list(user.getTopRated(10))
 List4 = list(user.getMinRated(10))
-List5 = list(user3.getTopRated(10))
-List6 = list(user3.getMinRated(10))
+List5 = list(user2.getTopRated(10))
+List6 = list(user2.getMinRated(10))
 List7 = list()
 List8 = list()
 
