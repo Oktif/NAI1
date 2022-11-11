@@ -1,7 +1,8 @@
 '''
 Programming Team: Maciej Zakrzewski, Oktawian Filipkowski.
-Purpose of this program is to recommend movies to watch or to warn users against watching bad ones.
-We will start by importing libraries
+Purpose of this program is to recommend movies to watch or to warn user against watching bad ones.
+We will start by importing necessary libraries
+Side note : using * in import is usually not recommended, only use with caution
 '''
 from ratingParse import parse
 from userRating import userRating
@@ -33,6 +34,7 @@ for t in range(len(userRatings)):
         if (len(shared_items)) >= s:
             s = t
             user2 = userRatings[s]
+
 '''Alternative version for bonus exercise is cosine similarity'''
 z = 0
 for j in range(len(userRatings)):
@@ -47,11 +49,9 @@ for j in range(len(userRatings)):
             zz = j
             user3 = userRatings[zz]
 
-
-
 '''
 After calculations user's soulmate will be found and movies will be reccomended for our dear user
-ps. In case of Mr.Czapiewski "Listy do M" are used as an option because there is typo in the name of the movie
+ps. In case of Mr.Czapiewski "Listy do M" are used as an option because there is typo in the name of the movie,so i fixed it
 Lets start with shared similarity 
 '''
 print('Congrats', user.name, 'according shared similarity method your soulmate is', user2.name)
@@ -59,27 +59,22 @@ print('Your average score is',user.getAverageScore(), 'your\'s soulmate\'s is', 
 List1 = user.ratings
 List2 = user2.ratings
 print('You both watched', set(List1).intersection(List2))
-List3 = list(user.getTopRated(10))
-List4 = list(user.getMinRated(10))
-List5 = list(user2.getTopRated(10))
-List6 = list(user2.getMinRated(10))
+List3 = list(user.getTopRated(15))
+List4 = list(user.getMinRated(15))
+List5 = list(user2.getTopRated(15))
+List6 = list(user2.getMinRated(15))
 List7 = list()
 List8 = list()
-def in_list(list1,list2):
-    for i in list1:
-        if i not in list2:
-            List7.append(i)
-    return True
 
-def in_list2(list1,list2):
-    for i in list1:
-        if i not in list2:
-            List8.append(i)
-    return True
-in_list(List5,List3)
-in_list2(List6,List4)
+make_list(List5, List3, List7)
+make_list(List6, List4, List8)
+list_temp = list(set(List1).intersection(List2))
+list_temp = set(List1).intersection(List2)
+listaa = list(list_temp)
+cleaner(listaa, List7)
+cleaner(listaa, List8)
 print('You should watch:', List7[:5])
-print('You shouldn\'t watch:', List8[:4:-1])
+print('You shouldn\'t watch:', List8[4::-1])
 
 '''
 Now we do the same for cosine similarity method
@@ -88,7 +83,7 @@ print('''
 ************************************************************************************************************************
 ''')
 print('Congrats', user.name, 'according to cosine similarity method your soulmate is', user3.name)
-print('Your average score is',user.getAverageScore(), 'your\'s soulmate\'s is', user3.getAverageScore(), 'quite a picky bunch, aren\'t ya?')
+print('Your average score is', user.getAverageScore(), 'your\'s soulmate\'s is', user3.getAverageScore(), 'quite a picky bunch, aren\'t ya?')
 List11 = user.ratings
 List21 = user3.ratings
 print('You both watched', set(List11).intersection(List21))
@@ -99,71 +94,16 @@ List61 = user3.getMinRated(15)
 List71 = list()
 List81 = list()
 
+make_list(List51, List31, List71)
+make_list(List61, List41, List81)
 list_temp = list(set(List11).intersection(List21))
-#print('do usuwania: ', list_temp)
-
-# def in_list(list1,list2,list3):
-#     keys1 = []
-#     keys2 = []
-#     for i in (list1):
-#         keys1.append(list(i.keys()))
-#     print(keys1)
-#     for g in (list2):
-#         keys2.append(list(g.keys()))
-#     print(keys2)
-#     for h in keys1:
-#         if h not in keys2:
-#             list3.append(h)
-#     return list3
-
-make_list(List51,List31,List71)
-make_list(List61,List41,List81)
-
 list_temp = set(List11).intersection(List21)
 listaa = list(list_temp)
-# def cleaner(lista1,lista2):
-#     for element in lista1:
-#         if [element] in lista2:
-#             lista2.remove([element])
-#     return lista2
-
-
-cleaner(listaa,List71)
-cleaner(listaa,List81)
-#print(List71)
-
+cleaner(listaa, List71)
+cleaner(listaa, List81)
 print('You should watch:', List71[:5])
 print('You shouldn\'t watch:', List81[:5])
 
-
-# list_temp = set(List11).intersection(List21)
-#
-# print('do usuwania: ', list_temp)
-# print('Lista list', List71[1])
-
-# for element in list_temp:
-#     elem = list(element)
-#     print(elem)
-#     if elem in List71:
-#         print('znaleziono', element)
-#         #List71.remove(element)
-#     else:
-#         print('bug')
-
-# print('cleaned', List71)
-#
-# for element in List71:
-#     print(element)
-# list_temp = list(list_temp)
-# print('test',list[list_temp[1]])
-
-# k = 0
-# for element in list_temp[k]:
-#     print(element)
-#     k += 1
-
-# print('do usuwania: ', list_temp)
-# print('Lista list', List71[1])
 
 
 

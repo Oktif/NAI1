@@ -1,5 +1,6 @@
 from ratingParse import parse
 userRatings = parse()
+
 '''
 Loop used for inputting desired user
 '''
@@ -19,3 +20,4 @@ def user_name():
             print('incorrect data, please enter correct one, if you are unsure whats your name enter AMNESIA')
             continue
         return u
+

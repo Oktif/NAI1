@@ -1,5 +1,5 @@
 '''
-This class contains most functions used for our program:
+This class contains some functions used for our program:
 haveRated and getRating will check if particular movie was rated and if it was, functions will return its values
 getTopRated will return the highest rated movies
 getMinRated will return the lowest rated movies
