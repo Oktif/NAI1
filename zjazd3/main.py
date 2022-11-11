@@ -6,7 +6,7 @@ We will start by importing libraries
 from ratingParse import parse
 from userRating import userRating
 from userSelection import user_name
-from movieCalculation import cosine_dic
+from movieCalculation import *
 '''
 Then we will import parsed data
 '''
@@ -85,9 +85,9 @@ print('You shouldn\'t watch:', List8[:4:-1])
 Now we do the same for cosine similarity method
 '''
 print('''
-*****************************************************************************************************************
+************************************************************************************************************************
 ''')
-print('Congrats', user.name, 'according cosine similarity method your soulmate is', user3.name)
+print('Congrats', user.name, 'according to cosine similarity method your soulmate is', user3.name)
 print('Your average score is',user.getAverageScore(), 'your\'s soulmate\'s is', user3.getAverageScore(), 'quite a picky bunch, aren\'t ya?')
 List11 = user.ratings
 List21 = user3.ratings
@@ -99,33 +99,71 @@ List61 = user3.getMinRated(15)
 List71 = list()
 List81 = list()
 
-def in_list(list1,list2,list3):
-    keys1 = []
-    keys2 = []
-    for i in (list1):
-        keys1.append(list(i.keys()))
-    for g in (list2):
-        keys2.append(list(g.keys()))
-    for h in keys1:
-        if h not in keys2:
-            list3.append(h)
-    return list3
+list_temp = list(set(List11).intersection(List21))
+#print('do usuwania: ', list_temp)
+
+# def in_list(list1,list2,list3):
+#     keys1 = []
+#     keys2 = []
+#     for i in (list1):
+#         keys1.append(list(i.keys()))
+#     print(keys1)
+#     for g in (list2):
+#         keys2.append(list(g.keys()))
+#     print(keys2)
+#     for h in keys1:
+#         if h not in keys2:
+#             list3.append(h)
+#     return list3
+
+make_list(List51,List31,List71)
+make_list(List61,List41,List81)
+
+list_temp = set(List11).intersection(List21)
+listaa = list(list_temp)
+# def cleaner(lista1,lista2):
+#     for element in lista1:
+#         if [element] in lista2:
+#             lista2.remove([element])
+#     return lista2
 
 
+cleaner(listaa,List71)
+cleaner(listaa,List81)
+#print(List71)
 
-
-def in_list2(list1,list2):
-    for i in list1:
-        if i not in list2:
-            List81.append(i)
-    return True
-
-
-in_list(List51,List31,List71)
-in_list(List61,List41,List81)
 print('You should watch:', List71[:5])
 print('You shouldn\'t watch:', List81[:5])
 
+
+# list_temp = set(List11).intersection(List21)
+#
+# print('do usuwania: ', list_temp)
+# print('Lista list', List71[1])
+
+# for element in list_temp:
+#     elem = list(element)
+#     print(elem)
+#     if elem in List71:
+#         print('znaleziono', element)
+#         #List71.remove(element)
+#     else:
+#         print('bug')
+
+# print('cleaned', List71)
+#
+# for element in List71:
+#     print(element)
+# list_temp = list(list_temp)
+# print('test',list[list_temp[1]])
+
+# k = 0
+# for element in list_temp[k]:
+#     print(element)
+#     k += 1
+
+# print('do usuwania: ', list_temp)
+# print('Lista list', List71[1])
 
 
 
