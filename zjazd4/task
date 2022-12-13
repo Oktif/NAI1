@@ -1,0 +1,7 @@
+Sieci Neuronowe dla Klasyfikacji								
+Technologia dowolna: wybrać jeden framework wspierający użycie sieci neuronowych i użyć go do realizacji wszystkich ćwieczeń.								
+1. Wykorzystać jeden z zbiorów danych z poprzednich ćwiczeń i naucz sieć neuronową.								
+   Porównaj skuteczność obu podejść. Dodaj logi/print screen do repozytorium.								
+2. Naucz sieć rozpoznać zwierzęta.		np. z zbioru CIFAR10						
+3. Naucz sieć rozpoznawać ubrania		np. GitHub - zalandoresearch/fashion-mnist: A MNIST-like fashion product database. Benchmark						
+4. Zaskocz mnie. Zaproponuj własny przypadek użycia sieci neuronowych (bonus jeżeli sam stworzysz dane) do problemu klasyfikacji.								
