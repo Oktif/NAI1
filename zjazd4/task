@@ -1,7 +1,18 @@
-Sieci Neuronowe dla Klasyfikacji								
-Technologia dowolna: wybrać jeden framework wspierający użycie sieci neuronowych i użyć go do realizacji wszystkich ćwieczeń.								
-1. Wykorzystać jeden z zbiorów danych z poprzednich ćwiczeń i naucz sieć neuronową.								
-   Porównaj skuteczność obu podejść. Dodaj logi/print screen do repozytorium.								
-2. Naucz sieć rozpoznać zwierzęta.		np. z zbioru CIFAR10						
-3. Naucz sieć rozpoznawać ubrania		np. GitHub - zalandoresearch/fashion-mnist: A MNIST-like fashion product database. Benchmark						
-4. Zaskocz mnie. Zaproponuj własny przypadek użycia sieci neuronowych (bonus jeżeli sam stworzysz dane) do problemu klasyfikacji.								
+NAI Ćwiczenia 19.11.2022		Grupa				
+Deadline 	01.12.2022					
+						
+1. Jeden zbiór danych wybrać do klasyfikacji (z wyłączeniem Irysów)						
+2. Nauczyć Drzewo decyzyjne i SVM klasyfikować dane.						
+3. Wybrać drugi zbiór danych do klasyfikacji (unikowany w grupie - podaj link do danych zarówno w tabeli jak i w kodzie źródłowym) dostępny w sieci; 						
+4. Naucz Drzewo decyzyjne i SVM klasyfikować dane.						
+						
+Dodać dokumentację do kodu źródłowego (np. Python -> docstring; Java -> Jdoc; Kotlina -> Kdoc; C++ -> doxgen, etc.)						
+Rozwiązanie poprzedź komentarzem zawierający opis problem, autora, instrukcję użycia, (opcjonalnie: referencje)						
+Rozwiązanie umieścić w repozytorium.						
+Dodać zrzut ekranu (wideo, etc.) z wywołaniem scenariuszy; wkomituj do repozytorium.						
+						
+Bonus (powiększona ocena, dla chętnych)						
+- podaj przykładową wizualizację danych;						
+- zaprezetuj użycie różnych rodzaj kernel function						
+- zamiast użyć danych dostępnych w sieci, samodzielnie przygotuj dane do nauczenia klasyfikatora (np. dokonać pomiarów; zaimplementować websrappera/ zrobić ankietę wśród znajomych;)						
+- stworzone dane umieść w repozytorium						
