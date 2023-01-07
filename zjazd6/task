@@ -1,0 +1,32 @@
+Deadline 12.01.2023			
+			
+Pobaw się z Computer Vision			
+Technologia dowolna. Wybierz jeden z tematów ćwiczenia. Zademonstrowali użycie na strumieniu video.			
+			
+1. Zbudować prototyp maszyny do gry w "Baba Jaga patrzy" (wybrać 2 z 4 funkcjonalności)			
+- Narysować celownik na twarzy celu;			
+- Wycelować tylko w zielone cele (nie w czerwone)?			
+- Wycelować w cele które się ruszają?			
+- Nie strzelać czy uczestnik się poddaje?			
+			
+2. Zbuduj złą platformę do wyświetlania reklam  (2 z 3 funkcjonalności)			
+- detekcji oczu (sprawdź czy oglądający nie zamknął oczu)			
+- zatrzymuje wysłanie reklamy, gdy oglądający nie patrzy?			
+- po określonym czasie wyświetla alert (np. wróć do oglądania reklamy)?			
+			
+3. Zbuduj program do detekcji gestów. 			
+Stwórz program obsługujący np. odtwarzacz multimedialny gestami.			
+- Zaproponuj obsługę min różnych 4 gestów.			
+			
+4. Zbuduj system, który rozpozna czy na ekranie jest jedna z 3 flag. Podaj jej pozycję.			
+- System rozpoznaje flagę polską, rosyjską i ukraińską			
+			
+5. Zaproponuj sam temat i listę funkcjonalności			
+- Przygotuj i zaproponuj własny temat do 24.12.2022			
+			
+Technologia, Framework, dowolny; proszę nanieść w tabeli poniżej			
+Dodać dokumentację do kodu źródłowego (np. Python -> docstring; Java -> Jdoc; Kotlina -> Kdoc; C++ -> doxgen, etc.)			
+Dane do uczenia algorytmu udostępnić prowadzącemu.			
+Rozwiązanie poprzedź komentarzem zawierający opis problem, autora, instrukcję użycia, (opcjonalnie: referencje).			
+Rozwiązanie umieść w repozytoriach obu partnerów (użytym podczas pierwszy ćwiczeń)			
+Dodać wideo z wywołaniem przykładowego scenariusza; w komituj do repozytorium			
