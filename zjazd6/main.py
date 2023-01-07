@@ -52,7 +52,8 @@ while cap2.isOpened():
     if ret1 == True:
         if ret1:
             '''
-            We start by monitoring user, then launch an add
+            Monitoring user and add launching,
+            slight delay between two
             '''
             if count > 5:
                 if cap2.isOpened():
