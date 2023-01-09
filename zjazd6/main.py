@@ -109,7 +109,7 @@ while cap2.isOpened():
                 winsound.Beep(440, 500)
                 beep = 0
                 cv2.imshow('ACHTUNG', img2)
-                cv2.waitKey(-1)  # wait until any key is pressed
+                cv2.waitKey(-1)
                 cv2.destroyWindow("ACHTUNG")
 
         count += 1
