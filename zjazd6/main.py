@@ -21,9 +21,10 @@ face_classifier = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 eye_classifier = cv2.CascadeClassifier('haarcascade_eye.xml')
 
 '''
-Setting countdown for starting video
+Setting countdown for starting video and pausing video
 '''
 count = 0
+beep = 0
 
 '''
 Reading files:
@@ -60,7 +61,7 @@ while cap2.isOpened():
                     _, frm2 = cap2.read()
 
             if frm2 is not None:
-                cv2.imshow("frm2", frm2)
+                cv2.imshow("AD", frm2)
 
             if frm1 is not None:
                 ret, img = cap1.read()
@@ -87,21 +88,29 @@ while cap2.isOpened():
                 Monitoring user frame-by-frame
                 For privacy reasons this option is turned off in presentation
                 '''
-                cv2.imshow("frm1", img)
+                cv2.imshow("monitoring", img)
 
             key = cv2.waitKey(1)
 
             '''
-            If user is not focusing on monitor/camera AD will be stopped,
-            warning sound will be played
-            and warning message will appear
+            If user is not focusing on monitor/camera AD will be stopped 
+            after some time.
+            First sound warning will be played and ad will slow down,
+            later warning message will appear
             to proceed user must press a key.
             '''
             if detected_eyes == () and detected_faces == ():
                 winsound.Beep(440, 500)
-                cv2.imshow('img', img2)
+                beep +=1
+            else:
+                beep = 0
+
+            if detected_eyes == () and detected_faces == () and beep == 5:
+                winsound.Beep(440, 500)
+                beep = 0
+                cv2.imshow('ACHTUNG', img2)
                 cv2.waitKey(-1)  # wait until any key is pressed
-                cv2.destroyWindow("img")
+                cv2.destroyWindow("ACHTUNG")
 
         count += 1
 
