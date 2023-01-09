@@ -99,11 +99,6 @@ while cap2.isOpened():
             later warning message will appear
             to proceed user must press a key.
             '''
-            if detected_eyes == () and detected_faces == ():
-                winsound.Beep(440, 500)
-                beep +=1
-            else:
-                beep = 0
 
             if detected_eyes == () and detected_faces == () and beep == 5:
                 winsound.Beep(440, 500)
@@ -111,6 +106,11 @@ while cap2.isOpened():
                 cv2.imshow('ACHTUNG', img2)
                 cv2.waitKey(-1)
                 cv2.destroyWindow("ACHTUNG")
+            elif detected_eyes == () and detected_faces == ():
+                winsound.Beep(440, 500)
+                beep +=1
+            else:
+                beep = 0
 
         count += 1
 
